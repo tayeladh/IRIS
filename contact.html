@@ -3,68 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact - Iris VA </title>
+  <title>Contact - Iris VA</title>
+
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-  <meta name="description" content="Get in touch with Iris VA " />
+  <meta name="description" content="Get in touch with Iris VA" />
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background-color: black;
       font-family: Arial, sans-serif;
       color: white;
       overflow-x: hidden;
+      background-color: black;
     }
 
+    /* ================= HERO BACKGROUND ================= */
     .iris-image {
       position: relative;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
-      background-image: url("images/iris-image.jpg");
+      background: url("./images/iris-image.jpg") no-repeat center center;
       background-size: cover;
-      background-position: center;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      flex-direction: column;
-      padding: 0 20px;
     }
 
     .iris-image::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
       z-index: 0;
     }
 
+    .iris-text {
+      position: relative;
+      z-index: 1;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    /* ================= TOP BAR ================= */
     .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 20px 0;
-      position: fixed;
-      top: 0;
-      width: 100%;
+      padding: 18px 20px;
       z-index: 1000;
     }
 
     .logo {
       font-size: 24px;
       font-weight: bold;
-      margin-left: 17px;
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
-      padding-right: 17px;
+      gap: 15px;
       align-items: center;
     }
 
@@ -72,46 +78,34 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 4px;
-      transition: all 0.3s ease;
+      transition: 0.3s;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
-      background-color: white;
+      background: white;
       color: black;
     }
 
     .get-started {
-      background-color: #0066ff;
+      background: #0066ff;
       color: white !important;
       border-radius: 6px;
-      padding: 8px 14px;
-      text-decoration: none;
-      display: inline-block;
     }
 
-    .iris-text {
-      position: relative;
-      z-index: 1;
-      font-size: 38px;
-      font-weight: bold;
-      max-width: 800px;
-    }
-
+    /* ================= PAGE CONTENT ================= */
     .page-content {
-      padding: 80px 20px;
+      padding: 100px 20px;
       max-width: 1000px;
-      margin: 0 auto;
+      margin: auto;
       text-align: center;
       animation: fadeIn 1s ease-in;
     }
 
     .page-content h2 {
       font-size: 32px;
-      position: relative;
-      display: inline-block;
       margin-bottom: 30px;
     }
 
@@ -120,21 +114,21 @@
       display: block;
       width: 60px;
       height: 4px;
-      background-color: #0066ff;
+      background: #0066ff;
       margin: 10px auto 0;
       border-radius: 2px;
     }
 
     .contact-box {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 30px 40px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 30px;
       border-radius: 12px;
-      line-height: 1.7;
       font-size: 18px;
       color: #ddd;
-      box-shadow: 0 0 20px rgba(0, 102, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 102, 255, 0.15);
       text-align: left;
-      margin-top: 20px;
+      max-width: 500px;
+      margin: auto;
     }
 
     .contact-box a {
@@ -143,7 +137,56 @@
     }
 
     .contact-box a:hover {
-      color: #ffffff;
+      color: white;
+    }
+
+    /* ================= POPUP ================= */
+    .popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+    }
+
+    .popup-content {
+      background: #1c1c1c;
+      margin: 10% auto;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .popup-content h2 {
+      color: #0066ff;
+    }
+
+    .popup-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: none;
+    }
+
+    .popup-content button {
+      background: #0066ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .popup-content button:hover {
+      background: #004ecb;
+    }
+
+    .close {
+      float: right;
+      font-size: 26px;
+      cursor: pointer;
     }
 
     @keyframes fadeIn {
@@ -156,70 +199,11 @@
         transform: translateY(0);
       }
     }
- .popup {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .popup-content {
-      background-color: #1c1c1c;
-      color: #000;
-      margin: 10% auto;
-      padding: 30px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-      text-align: center;
-    }
-
-    .popup-content h2 {
-      margin-bottom: 20px;
-      color: #0066ff;
-    }
-
-    .popup-content input {
-      width: 90%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .popup-content button {
-      background-color: #0066ff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .popup-content button:hover {
-      background-color: #004ecb;
-    }
-
-    .close {
-      float: right;
-      font-size: 28px;
-      cursor: pointer;
-      color: #333;
-    }
-
-    .close:hover {
-      color: red;
-    }
   </style>
 </head>
 
 <body>
+
   <div class="top-bar">
     <div class="logo">Iris</div>
     <div class="nav-links">
@@ -241,9 +225,9 @@
       <p><strong>Email:</strong> <a href="mailto:irisva2025@hotmail.com">irisva2025@hotmail.com</a></p>
       <p><strong>Phone:</strong> +1 737-443-9111</p>
     </div>
-   </div>
+  </div>
 
- <!-- Popup Form -->
+  <!-- Popup -->
   <div id="popupForm" class="popup">
     <div class="popup-content">
       <span class="close" id="closePopup">&times;</span>
@@ -258,20 +242,21 @@
   </div>
 
   <script>
-    document.querySelector('.get-started').addEventListener('click', function (event) {
-      event.preventDefault();
-      document.getElementById('popupForm').style.display = 'block';
-    });
+    document.querySelector(".get-started").onclick = function (e) {
+      e.preventDefault();
+      document.getElementById("popupForm").style.display = "block";
+    };
 
-    document.getElementById('closePopup').addEventListener('click', function () {
-      document.getElementById('popupForm').style.display = 'none';
-    });
+    document.getElementById("closePopup").onclick = function () {
+      document.getElementById("popupForm").style.display = "none";
+    };
 
-    window.addEventListener('click', function (event) {
-      if (event.target === document.getElementById('popupForm')) {
-        document.getElementById('popupForm').style.display = 'none';
+    window.onclick = function (e) {
+      if (e.target === document.getElementById("popupForm")) {
+        document.getElementById("popupForm").style.display = "none";
       }
-    });
+    };
   </script>
+
 </body>
 </html>
